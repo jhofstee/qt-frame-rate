@@ -96,6 +96,12 @@ private slots:
 		}
 	}
 
+	/*
+	 * Fake work, but the frame buffer updates will try to keep 60Hz,
+	 * so 16.7 ms. So _if_ the qt event loop would prioritize paint events,
+	 * fps should be able to keep up to 60Hz. If it doesn't 40 times 10ms
+	 * will still stall the gui...
+	 */
 	void doWork() {
 		QThread::msleep(10);
 	}
