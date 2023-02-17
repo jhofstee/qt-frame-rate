@@ -85,7 +85,7 @@ signals:
 
 private slots:
 	void onTrigger() {
-		for (int i=0; i < 40; i++) {
+		for (int i=0; i < 80; i++) {
 			if (!queued) {
 				// now this will obviously block the gui...
 				doWork();
@@ -99,11 +99,11 @@ private slots:
 	/*
 	 * Fake work, but the frame buffer updates will try to keep 60Hz,
 	 * so 16.7 ms. So _if_ the qt event loop would prioritize paint events,
-	 * fps should be able to keep up to 60Hz. If it doesn't 40 times 10ms
-	 * will still stall the gui...
+	 * fps should be able to keep up to 60Hz roughly. If it doesn't 80
+	 * times 5ms will still stall the gui... so latency is around 400ms.
 	 */
 	void doWork() {
-		QThread::msleep(10);
+		QThread::msleep(5);
 	}
 
 private:
